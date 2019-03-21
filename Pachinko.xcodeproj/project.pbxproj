@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2D0FC5C12243D44000FEB340 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0FC5C02243D44000FEB340 /* AppDelegate.swift */; };
 		2D0FC5C32243D44000FEB340 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2D0FC5C22243D44000FEB340 /* GameScene.sks */; };
-		2D0FC5C52243D44000FEB340 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2D0FC5C42243D44000FEB340 /* Actions.sks */; };
 		2D0FC5C72243D44000FEB340 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0FC5C62243D44000FEB340 /* GameScene.swift */; };
 		2D0FC5C92243D44000FEB340 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0FC5C82243D44000FEB340 /* GameViewController.swift */; };
 		2D0FC5CC2243D44000FEB340 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D0FC5CA2243D44000FEB340 /* Main.storyboard */; };
@@ -21,7 +20,6 @@
 		2D0FC5BD2243D44000FEB340 /* Pachinko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pachinko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0FC5C02243D44000FEB340 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D0FC5C22243D44000FEB340 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		2D0FC5C42243D44000FEB340 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		2D0FC5C62243D44000FEB340 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		2D0FC5C82243D44000FEB340 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		2D0FC5CB2243D44000FEB340 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -62,7 +60,6 @@
 			children = (
 				2D0FC5C02243D44000FEB340 /* AppDelegate.swift */,
 				2D0FC5C22243D44000FEB340 /* GameScene.sks */,
-				2D0FC5C42243D44000FEB340 /* Actions.sks */,
 				2D0FC5C62243D44000FEB340 /* GameScene.swift */,
 				2D0FC5C82243D44000FEB340 /* GameViewController.swift */,
 				2D0FC5CA2243D44000FEB340 /* Main.storyboard */,
@@ -135,7 +132,6 @@
 				2D0FC5C32243D44000FEB340 /* GameScene.sks in Resources */,
 				2D0FC5CE2243D44100FEB340 /* Assets.xcassets in Resources */,
 				2D0FC5D12243D44100FEB340 /* LaunchScreen.storyboard in Resources */,
-				2D0FC5C52243D44000FEB340 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,10 +297,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.michelegalvagno.Pachinko;
+				PRODUCT_BUNDLE_IDENTIFIER = com.michelegalvagno.Patchiko;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -319,10 +315,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.michelegalvagno.Pachinko;
+				PRODUCT_BUNDLE_IDENTIFIER = com.michelegalvagno.Patchiko;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
