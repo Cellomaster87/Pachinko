@@ -11,7 +11,6 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Properties
     let availableBalls = ["ballBlue", "ballCyan", "ballGreen", "ballGrey", "ballPurple", "ballRed", "ballYellow"]
-    var numberOfBalls = 0
     
     var scoreLabel: SKLabelNode!
     
@@ -33,6 +32,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    var ballsLabel: SKLabelNode!
+    
+    var numberOfBalls = 0 {
+        didSet {
+            ballsLabel.text = "Balls: \(numberOfBalls)"
+        }
+    }
+    
+    
     // MARK: - Scene management
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
@@ -51,6 +59,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         editLabel.text = "Edit"
         editLabel.position = CGPoint(x: 80, y: 700)
         addChild(editLabel)
+        
+        ballsLabel = SKLabelNode(fontNamed: "Chalkduster")
+        ballsLabel.text = "Balls: 0"
+        ballsLabel.horizontalAlignmentMode = .center
+        ballsLabel.position = CGPoint(x: 512, y: 700)
+        addChild(ballsLabel)
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
@@ -95,14 +109,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
                 ball.position = CGPoint(x: location.x, y: 768)
                 ball.name = "ball"
-                numberOfBalls += 1
-                if numberOfBalls > 5 {
+                if numberOfBalls >= 5 {
                     if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
                         fireParticles.position = location
                         addChild(fireParticles)
                     }
                     return
                 }
+                numberOfBalls += 1
 
                 addChild(ball)
             }
