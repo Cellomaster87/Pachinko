@@ -10,6 +10,9 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Properties
+    let availableBalls = ["ballBlue", "ballCyan", "ballGreen", "ballGrey", "ballPurple", "ballRed", "ballYellow"]
+    var numberOfBalls = 0
+    
     var scoreLabel: SKLabelNode!
     
     var score = 0 {
@@ -57,11 +60,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makeSlot(at: CGPoint(x: 640, y: 0), isGood: true)
         makeSlot(at: CGPoint(x: 896, y: 0), isGood: false)
         
-        makeBounder(at: CGPoint(x: 0, y: 0))
-        makeBounder(at: CGPoint(x: 256, y: 0))
-        makeBounder(at: CGPoint(x: 512, y: 0))
-        makeBounder(at: CGPoint(x: 768, y: 0))
-        makeBounder(at: CGPoint(x: 1024, y: 0))
+        makeBouncer(at: CGPoint(x: 0, y: 0))
+        makeBouncer(at: CGPoint(x: 256, y: 0))
+        makeBouncer(at: CGPoint(x: 512, y: 0))
+        makeBouncer(at: CGPoint(x: 768, y: 0))
+        makeBouncer(at: CGPoint(x: 1024, y: 0))
     }
     
     // MARK: - Touch methods
@@ -80,25 +83,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let box = SKSpriteNode(color: UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1), size: size)
                 box.zRotation = CGFloat.random(in: 0...3)
                 box.position = location
-                
+                box.name = "box"
                 box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
                 box.physicsBody?.isDynamic = false
                 
                 addChild(box)
             } else {
-                let ball = SKSpriteNode(imageNamed: "ballRed")
+                let ball = SKSpriteNode(imageNamed: availableBalls.randomElement() ?? "ballRed")
                 ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
                 ball.physicsBody?.restitution = 0.4
                 ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
-                ball.position = location
+                ball.position = CGPoint(x: location.x, y: 768)
                 ball.name = "ball"
+                numberOfBalls += 1
+                if numberOfBalls > 5 {
+                    if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
+                        fireParticles.position = location
+                        addChild(fireParticles)
+                    }
+                    return
+                }
+
                 addChild(ball)
             }
         }
     }
     
     // MARK: - Methods
-    func makeBounder(at position: CGPoint) {
+    func makeBouncer(at position: CGPoint) {
         let bouncer = SKSpriteNode(imageNamed: "bouncer")
         bouncer.position = position
         bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2.0)
@@ -138,9 +150,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if object.name == "good" {
             destroy(ball: ball)
             score += 1
+            numberOfBalls -= 1
         } else if object.name == "bad" {
             destroy(ball: ball)
             score -= 1
+        } else if object.name == "box" {
+            object.removeFromParent()
         }
     }
     
